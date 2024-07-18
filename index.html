@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WenotiFy Kenya</title>
+    <link rel="stylesheet" href="./styles/css/globals.css" />
+    <link rel="stylesheet" href="./styles/css/style.css" />
+    <link rel="stylesheet" href="./styles/css/case.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/wenotify_kenya_shield.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/wenotify_kenya_shield.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/wenotify_kenya_shield.png"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.6/lib/index.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.6/base.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          screens: {
+            xs: '480px',
+            sm: '640px',
+            md: '768px',
+            lg: '1024px',
+            xl: '1280px',
+            '2xl': '1536px',
+          },
+        },
+      }
+    </script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <div
+        class="fixed top-0 left-0 right-0 h-screen z-[999] bg-[#0004] hidden"
+        id="authModal"
+      >
+        <div class="h-full w-full flex items-center justify-center">
+          <div
+            id="registerModal"
+            class="relative border border-slate-700 rounded-md px-2 py-4 w-[400px] -translate-x-14 bg-white hidden"
+            style="
+              box-shadow: #00000029 0px 10px 36px 0px, #0000000f 0px 0px 0px 1px;
+            "
+          >
+            <img
+              src="./assets/svg/xmark-solid.svg"
+              class="absolute z-[1000] top-2 right-2 cursor-pointer h-4 w-4"
+              alt=""
+              id="closeModal"
+            />
+            <h1 class="text-2xl font-bold">Register</h1>
+            <div class="err_box mt-2"></div>
+            <form class="w-full registration_form">
+              <div class="w-full my-4">
+                <input
+                  type="email"
+                  class="outline-none border border-slate-700 rounded-sm p-2 w-full reg_email"
+                  placeholder="Enter your Email..."
+                />
+              </div>
+              <div class="w-full my-4">
+                <input
+                  type="password"
+                  class="outline-none border border-slate-700 rounded-sm p-2 w-full reg_password"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="w-full my-4">
+                <input
+                  type="password"
+                  class="outline-none border border-slate-700 rounded-sm p-2 w-full reg_confirm_password"
+                  placeholder="Confirm Password"
+                />
+              </div>
+              <span class="text-xs"
+                >By registering you agree with our Terms of service and privacy
+                policy</span
+              ><br /><br />
+              <div class="flex justify-between items-center">
+                <div>
+                  <span id="showLogin" class="cursor-pointer">Login</span>
+                </div>
+                <button type="submit" class="btn">Sign up</button>
+              </div>
+            </form>
+          </div>
+
+          <div
+            id="loginModal"
+            class="relative border border-slate-700 rounded-md px-2 py-4 w-[400px] -translate-x-14 bg-white"
+            style="
+              box-shadow: #00000029 0px 10px 36px 0px, #0000000f 0px 0px 0px 1px;
+            "
+          >
+            <img
+              src="./assets/svg/xmark-solid.svg"
+              class="absolute z-[1000] top-2 right-2 cursor-pointer h-4 w-4"
+              alt=""
+              id="lcloseModal"
+            />
+            <h1 class="text-2xl font-bold">Login</h1>
+            <div class="err_box_log mt-2"></div>
+            <form class="w-full login_form" id="login_form">
+              <div class="w-full my-4">
+                <input
+                  type="email"
+                  class="outline-none border border-slate-700 rounded-sm p-2 w-full log_email"
+                  placeholder="Enter your Email..."
+                />
+              </div>
+              <div class="w-full my-4">
+                <input
+                  type="password"
+                  class="outline-none border border-slate-700 rounded-sm p-2 w-full log_password"
+                  placeholder="Password"
+                />
+              </div>
+              <span class="text-xs"
+                >By logging in you agree with our Terms of service and privacy
+                policy</span
+              ><br /><br />
+              <div class="flex justify-between items-center">
+                <div>
+                  <span id="showRegister" class="cursor-pointer">Register</span>
+                </div>
+                <button type="submit" class="btn">Sign in</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div
+        id="modal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-[1000]"
+      >
+        <div
+          class="bg-white p-4 rounded-lg relative w-[90%] md:w-[70%] h-[90vh] overflow-y-scroll"
+        >
+          <button id="closeModal" class="absolute top-2 right-2 text-gray-600">
+            X
+          </button>
+          <div id="modalContent" class="modal-content"></div>
+        </div>
+      </div>
+
+      <header class="w-full px-[5%] flex items-center justify-between py-2">
+        <div class="flex items-center justify-start gap-2">
+          <div class="h-14 w-14">
+            <img src="./assets/images/wenotify_kenya_shield.png" alt="" />
+          </div>
+          <h1
+            class="text-4xl font-bold"
+            style="
+              font-family: 'Quicksand';
+              font-optical-sizing: auto;
+              font-weight: 700;
+              font-style: normal;
+              line-height: 1;
+            "
+          >
+            WenotiFy
+          </h1>
+        </div>
+        <div class="cta_actions">
+          <button class="btn" id="showAuthModal">Sign in / Sign up</button>
+        </div>
+      </header>
+      <article>
+        <section class="min-h-screen">
+          <div
+            class="px-[5%] mx-auto flex flex-col justify-center h-[calc(100vh-60px)]"
+          >
+            <div
+              class="xs:flex items-center justify-between gap-4 w-full lnd_wrapper"
+            >
+              <div class="flex-1 mb-10 xs:mb-2">
+                <h1
+                  class="landing_hero_text text-[4rem] xs:text-[4rem]"
+                  style="
+                    font-family: 'Quicksand';
+                    font-optical-sizing: auto;
+                    font-weight: 700;
+                    font-style: normal;
+                    line-height: 1;
+                  "
+                >
+                  Top Security App
+                </h1>
+                <br />
+                <p
+                  class="landing_intro_texts my-4 text-lg xs:text-[1.7rem]"
+                  style="
+                    font-family: 'Quicksand';
+                    font-optical-sizing: auto;
+                    font-weight: 300;
+                    font-style: normal;
+                  "
+                >
+                  This application would support intelligence collection and
+                  real-time reporting of ongoing crimes. This project addresses
+                  crime reporting challenges with a web-based and a mobile
+                  system. Our web application offers real-time reporting,
+                  anonymous interaction, and quick access to evidence
+                  collection. Witness safety, distance barriers, and manual
+                  record-keeping issues were resolved.
+                </p>
+                <br />
+                <a href="#report" class="btn px-14 py-3 mt-8">report</a>
+              </div>
+              <div
+                class="landing_right flex items-center justify-between flex-1"
+              >
+                <img src="./assets/svg/landing_image.svg" alt="" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="">
+          <h1
+            class="text-center font-bold text-[4rem] mb-16"
+            style="
+              font-family: 'Quicksand';
+              font-optical-sizing: auto;
+              font-weight: 700;
+              font-style: normal;
+              line-height: 1;
+            "
+          >
+            Reports
+          </h1>
+          <div
+            class="px-[5%] flex items-start justify-start gap-2 flex-wrap report_list overflow-hidden"
+          ></div>
+        </section>
+
+        <section class="py-14 h-min" id="report">
+          <div class="px-[5%]">
+            <h1
+              class="text-center font-bold text-[4rem] mb-16"
+              style="
+                font-family: 'Quicksand';
+                font-optical-sizing: auto;
+                font-weight: 700;
+                font-style: normal;
+                line-height: 1;
+              "
+            >
+              Report Now
+            </h1>
+            <form class="report_form">
+              <div class="mb-8">
+                <h1 class="">1. Tell us about yourself (optional)</h1>
+                <div class="">
+                  <div class="my-8">
+                    <input
+                      type="text"
+                      class="w-full border border-slate-800 p-2 rounded-md rep_name"
+                      placeholder="Your Name"
+                    />
+                  </div>
+                  <div class="flex items-center justify-between gap-4 my-8">
+                    <div class="flex-1">
+                      <input
+                        type="text"
+                        class="w-full border border-slate-800 p-2 rounded-md rep_email"
+                        placeholder="Your Email"
+                      />
+                    </div>
+                    <div class="flex-1">
+                      <input
+                        type="text"
+                        class="w-full border border-slate-800 p-2 rounded-md rep_number"
+                        placeholder="Your Phone Number"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-8">
+                <h1 class="">
+                  2. Please describe the crime you are reporting?
+                </h1>
+                <div class="">
+                  <div class="my-8">
+                    <input
+                      type="text"
+                      class="w-full border border-slate-800 p-2 rounded-md rep_location"
+                      placeholder="Crime Location"
+                    />
+                  </div>
+                  <div class="my-8">
+                    <textarea
+                      name=""
+                      class="outline-none w-full border border-slate-800 p-2 rounded-md min-h-[150px] max-h-[300px] max-w-full rep_crime"
+                      placeholder="Describe the Crime"
+                    ></textarea>
+                  </div>
+                  <div class="my-8">
+                    <div
+                      class="images_status_notification mb-2 bg-[#048b20] rounded-md overflow-hidden"
+                    ></div>
+                    <div
+                      class="border border-slate-700 border-dashed p-2 relative flex items-center justify-between rounded-md"
+                    >
+                      <div class="relative h-[50px] w-full flex-1">
+                        <div
+                          class="absolute top-0 left-0 w-full h-full z-10 flex items-center"
+                          id="dropZone"
+                        >
+                          <span class="ml-4 image_info_text"
+                            >Drag & Drop Report assets (you can upload multiple
+                            images)</span
+                          >
+                        </div>
+                        <input
+                          type="file"
+                          multiple
+                          class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                          id="fileInput"
+                        />
+                      </div>
+                      <div class="w-min">
+                        <button type="button" class="btn" id="uploadButton">
+                          Upload
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      id="preview"
+                      class="mt-4 flex items-start justify-start gap-2"
+                    ></div>
+                  </div>
+                  <div class="flex items-center justify-end">
+                    <button type="submit" class="btn">report</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="">
+          <div class="caseWenotify wencase mx-[5%]">
+            <div class="case_lean_more">
+              <a
+                href="/"
+                target="_blank"
+                class="learn_more_btn"
+                rel="noreferrer"
+              >
+                <span>wenotify.com</span>
+                <RedirectLink class="goto_case_ic" />
+              </a>
+            </div>
+            <div class="caseWenLeft">
+              <h2 class="caseWenSubTitle">
+                an application that can be used by the general public to report
+                crimes and record realtime incidences
+              </h2>
+              <div class="caseKeywords">
+                <span>security</span>
+                <span>evidence</span>
+                <span>police</span>
+              </div>
+              <div class="caseBranding">
+                <img
+                  src="./assets/images/wenotify_kenya_shield.png"
+                  alt=""
+                  class="caseBrandLogo"
+                />
+                <h1
+                  class="caseBrandName"
+                  style="
+                    font-family: 'Quicksand';
+                    font-optical-sizing: auto;
+                    font-weight: 700;
+                    font-style: normal;
+                    line-height: 1;
+                  "
+                >
+                  WenotiFy Kenya
+                </h1>
+              </div>
+              <p class="caseExpPar">
+                This Case study examines the challenges faced by the society and
+                the police in crime reporting and real-time evidence taking.
+                This application would support intelligence collection and
+                real-time reporting of ongoing crimes. This project addresses
+                crime reporting challenges with a web-based and a mobile system.
+                Our web application offers real-time reporting, anonymous
+                interaction, and quick access to evidence collection. Witness
+                safety, distance barriers, and manual record-keeping issues were
+                resolved. Join us in creating a safer community through
+                technology!
+              </p>
+            </div>
+            <div class="caseWenRight">
+              <img
+                class="caseWenSplashScreenOne"
+                alt=""
+                src="./assets/images/splash_one.png"
+              />
+              <img
+                class="caseWenSplashScreenTwo"
+                alt=""
+                src="./assets/images/spalsh_two.png"
+              />
+            </div>
+          </div>
+        </section>
+      </article>
+      <footer class="">
+        <div class="py-2 flex items-center justify-center">
+          <p class="text-center">copyright &copy; 2024 - Dennis Kibet</p>
+        </div>
+      </footer>
+    </main>
+    <script src="./utils/backend.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="./utils/toastify.js"></script>
+    <script src="./utils/imageupload.js"></script>
+    <script>
+      const registerModal = document.getElementById('registerModal')
+      const loginModal = document.getElementById('loginModal')
+      const showRegister = document.getElementById('showRegister')
+      const showLogin = document.getElementById('showLogin')
+      const showAuthModal = document.getElementById('showAuthModal')
+      const authModal = document.getElementById('authModal')
+      const closeModal = document.getElementById('closeModal')
+      const lcloseModal = document.getElementById('lcloseModal')
+      const cta_actions = document.querySelector('.cta_actions')
+
+      showAuthModal.addEventListener('click', () => {
+        authModal.classList.remove('hidden')
+      })
+
+      closeModal.addEventListener('click', () => {
+        authModal.classList.add('hidden')
+      })
+      lcloseModal.addEventListener('click', () => {
+        authModal.classList.add('hidden')
+      })
+
+      showRegister.addEventListener('click', () => {
+        loginModal.classList.add('hidden')
+        registerModal.classList.remove('hidden')
+      })
+
+      showLogin.addEventListener('click', () => {
+        registerModal.classList.add('hidden')
+        loginModal.classList.remove('hidden')
+      })
+
+      // Initially show the login modal
+      loginModal.classList.remove('hidden')
+      registerModal.classList.add('hidden')
+    </script>
+    <script src="./utils/validator.js"></script>
+    <script src="./utils/cookie.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+.header .branding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.header .branding .branding_logo {
+  width: 50px;
+}
+.header .navigation .nav_unlist {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.header .navigation .nav_unlist .list_item {
+  margin: 0 1rem;
+}
+.header .header_cta .header_btn_cta {
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.landing .container {
+  height: 100%;
+}
+.landing .container > .lnd_wrapper {
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+}
+.landing .container > .lnd_wrapper .landing_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+}
+.landing .container > .lnd_wrapper .landing_left .landing_hero_text {
+  font-size: 4.5rem;
+}
+.landing .container > .lnd_wrapper .landing_left .landing_intro_texts {
+  font-size: 1.2rem;
+}
+.landing .container > .lnd_wrapper .landing_left .cta_lnd_form {
+  gap: 2rem;
+}
+.landing .container > .lnd_wrapper .landing_left .cta_lnd_form .cta_form_group input {
+  padding: 10px;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "id": "3e27",
+      "email": "bennkaiser1@gmail.com",
+      "password": "123456"
+    },
+    {
+      "email": "dennis@gmail.com",
+      "password": "1234",
+      "id": "QOR8FzO"
+    }
+  ],
+  "admins": [],
+  "reports": [
+    {
+      "id": "f725",
+      "full_name": "Dennis Kibet",
+      "email": "bennkaiser1@gmail.com",
+      "phone_number": "0798116710",
+      "location": "Nairobi",
+      "crime": "someone stole a cow",
+      "assets": [
+        "https://res.cloudinary.com/dkazrhnxq/image/upload/v1721204433/bzoqsykftcsh0xjouaqa.jpg"
+      ]
+    },
+    {
+      "id": "40e8",
+      "full_name": "Dennis Kibet",
+      "email": "bennkaiser1@gmail.com",
+      "phone_number": "0798116710",
+      "location": "Nakuru",
+      "crime": "someone broke into a shop",
+      "assets": [
+        "https://res.cloudinary.com/dkazrhnxq/image/upload/v1721280469/tnz7oijsdon0swsu4urx.jpg"
+      ]
+    },
+    {
+      "full_name": "Dennis",
+      "email": "dennis@gmail.com",
+      "phone_number": "0712345678",
+      "location": "Nairboi CBD",
+      "crime": "Where does it come from?\nContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+      "assets": [
+        "https://res.cloudinary.com/dkazrhnxq/image/upload/v1721294167/z3togjsaaxal2iydahwv.jpg",
+        "https://res.cloudinary.com/dkazrhnxq/image/upload/v1721294168/hetslovsllcr1f54fydc.jpg"
+      ],
+      "id": "UmKJUK8"
+    }
+  ]
+}

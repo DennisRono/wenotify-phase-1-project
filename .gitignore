@@ -1,0 +1,6 @@
+/node_modules
+.env*
+/scss
+/src/styles/scss
+*.css.map
+TEST.md
