@@ -20,10 +20,24 @@ const getCookie = (name) => {
 }
 
 // check if user is logged in
-const user = getCookie('wenotify')
+const user = JSON.parse(getCookie('wenotify'))
 
 if (user) {
   cta_actions.innerHTML = `
-    Welcome, Back ${user}
+    Welcome, Back <strong>${
+      user.full_name ? user.full_name : user.email
+    }</strong>
   `
+
+  if (user.full_name) {
+    document.querySelector('.rep_name').value = user.full_name
+  }
+
+  if (user.email) {
+    document.querySelector('.rep_email').value = user.email
+  }
+
+  if (user.phone_number) {
+    document.querySelector('.rep_number').value = user.phone_number
+  }
 }

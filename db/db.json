@@ -9,6 +9,13 @@
       "email": "dennis@gmail.com",
       "password": "1234",
       "id": "QOR8FzO"
+    },
+    {
+      "email": "denokibet2020@outlook.com",
+      "password": "1234",
+      "full_name": "Dennis Kibet",
+      "phone_number": "0798116710",
+      "id": "VpNXPCn"
     }
   ],
   "admins": [],

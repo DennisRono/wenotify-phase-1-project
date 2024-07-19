@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p class="text-xl leading-tight">${report.full_name}</p>
         <p class="text-sm leading-tight text-gray-600">${report.location}</p>
         <div class="mt-4">
-          <p class="text-md leading-tight text-gray-800 line-clamp-5">
+          <p class="text-md leading-tight text-gray-800 line-clamp-2">
             <strong>Crime:</strong>${report.crime}
           </p>
           <p class="text-md leading-tight text-gray-800">
@@ -147,11 +147,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const report_form = document.querySelector('.report_form')
   report_form.addEventListener('submit', (e) => {
     e.preventDefault()
-    const full_name = document.querySelector('.rep_name').value
-    const email = document.querySelector('.rep_email').value
-    const phone_number = document.querySelector('.rep_number').value
+
+    let full_name
+    if (user.full_name) {
+      full_name = user.full_name
+    } else {
+      full_name = document.querySelector('.rep_name').value
+    }
+    let email
+    if (user.email) {
+      email = user.email
+    } else {
+      email = document.querySelector('.rep_email').value
+    }
+
+    let phone_number
+    if (user.phone_number) {
+      phone_number = user.phone_number
+    } else {
+      phone_number = document.querySelector('.rep_number').value
+    }
     const location = document.querySelector('.rep_location').value
     const crime = document.querySelector('.rep_crime').value
+    console.log(user)
     const error = validateRepInputs({
       location,
       crime,

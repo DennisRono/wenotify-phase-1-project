@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const regUser = async (email, password) => {
+  const regUser = async (email, password, full_name, phone_number) => {
     try {
       const res = await fetch(backend() + 'users', {
         method: 'POST',
@@ -9,11 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({
           email,
           password,
+          full_name,
+          phone_number,
         }),
       })
       if (!res.ok) {
         throw new Error(res.message)
       } else {
+        showToast('Registration successful!', 'success')
         registerModal.classList.add('hidden')
         loginModal.classList.remove('hidden')
       }
@@ -43,7 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.length > 0) {
         if (data[0].password === password) {
           // set cookie session
-          setCookie('wenotify', data[0].email, 7)
+          setCookie(
+            'wenotify',
+            JSON.stringify({
+              email: data[0].email,
+              full_name: data[0].full_name,
+              phone_number: data[0].phone_number,
+            }),
+            7
+          )
+          showToast('Login successful!', 'success')
           authModal.classList.add('hidden')
           window.location.reload()
         } else {
@@ -69,6 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const err_box = document.querySelector('.err_box')
     const email = document.querySelector('.reg_email').value
     const password = document.querySelector('.reg_password').value
+    const full_name = document.querySelector('.reg_full_name').value
+    const phone_number = document.querySelector('.reg_phone_number').value
     const confirm_password = document.querySelector(
       '.reg_confirm_password'
     ).value
@@ -81,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       err_wrapper.innerHTML = `<p class='text-red-600 text-xs'>${error}</p>`
       err_box.appendChild(err_wrapper)
     } else {
-      regUser(email, password)
+      regUser(email, password, full_name, phone_number)
     }
   })
 
